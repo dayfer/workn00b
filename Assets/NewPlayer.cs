@@ -6,11 +6,18 @@ public class NewPlayer : MonoBehaviour
 {
     private float moveSpeed = 2;
     Animator animator;
+    
+
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        Debug.Log(gameObject.name);
+        Debug.Log("Test");
+        Debug.Log(gameObject.gameObject);
+
     }
 
     // Update is called once per frame
