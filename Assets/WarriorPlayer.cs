@@ -6,7 +6,7 @@ public class WarriorPlayer : MonoBehaviour
 {
     private float moveSpeed = 2;
     Animator animator;
-    bool noseToTheEast = true;
+    bool noseToTheEast = true; //drawn that way
 
 
 
@@ -24,25 +24,22 @@ public class WarriorPlayer : MonoBehaviour
 
         float fInputH = Input.GetAxis("Horizontal");
 
+        if ((fInputH < 0.0 && noseToTheEast) || (fInputH > 0.0 && !noseToTheEast))
+        {
+            //flip it
+            noseToTheEast = fInputH > 0.0;
+            Vector3 currentScale = transform.localScale;
+            currentScale.x = -currentScale.x;
+            transform.localScale = currentScale;
 
-        Vector3 movement = new Vector3(fInputH, 0f, 0f);
-        
+        }
+
         if (fInputH != 0.0)
         {
+
+            Vector3 movement = new Vector3(fInputH, 0f, 0f);
             animator.SetBool("isRunning", true);
             transform.position += movement * Time.deltaTime * moveSpeed;
-
-            if (fInputH < 0.0 && noseToTheEast)
-            {
-                noseToTheEast = true;
-                Vector3 currentScale = transform.localScale;
-                currentScale.x = -currentScale.x;
-                transform.localScale = currentScale;
-
-            }
-            noseToTheEast = fInputH > 0.0;
-
-
         }
 
 
