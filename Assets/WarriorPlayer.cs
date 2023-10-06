@@ -21,6 +21,7 @@ public class WarriorPlayer : MonoBehaviour
     {
 
         animator.SetBool("isRunning", false);
+        animator.SetBool("isJumping", false);
 
         float fInputH = Input.GetAxis("Horizontal");
 
@@ -51,6 +52,12 @@ public class WarriorPlayer : MonoBehaviour
             animator.SetBool("isRunning", true);
             transform.position += movement2 * Time.deltaTime * moveSpeed;
         }
+
+        if(Input.GetKey(KeyCode.Space))
+        {
+            animator.SetBool("isJumping", true);
+        }
+
 
     }
 }
